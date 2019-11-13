@@ -1,26 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Userinput from './components/Userinput';
+import Title from './components/Title';
+import Display from './components/display';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends React.Component {
+    state = {
+        city: "",
+        temperature: ""
+    };
+
+    handleCityFromInput = (cityFromUser, weatherFromUser) => {
+        this.setState({city: cityFromUser});
+        this.setState({temperature: weatherFromUser})
+    };
+
+    render () {
+        return (
+            <div>
+                <Title/>
+                <Userinput onUserInput={this.handleCityFromInput}/>
+                <Display city={this.state.city} temperature={this.state.temperature}/>
+            </div>
+        )
+    };
 }
-
-export default App;
